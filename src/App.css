@@ -49,6 +49,9 @@ button {
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    background-color: #61dafb;
+    color: #282c34;
+    font-weight: bold;
 }
 
 .card {
