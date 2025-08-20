@@ -1,10 +1,21 @@
-// File: src/App.js
 import React, { useState } from 'react';
 import './App.css';
 
 function App() {
     const [name, setName] = useState('Alice');
     const [message, setMessage] = useState('Happy Birthday!');
+
+    // This function is supposed to handle the message input, but it has a bug!
+    const handleMessageChange = (e) => {
+        // BUG: This line incorrectly resets the name whenever the message changes.
+        setName('Guest');
+        setMessage(e.target.value);
+    };
+
+    const handleReset = () => {
+        setName('Alice');
+        setMessage('Happy Birthday!');
+    };
 
     return (
         <div className="App">
@@ -23,9 +34,10 @@ function App() {
                     <input
                         type="text"
                         value={message}
-                        onChange={(e) => setMessage(e.target.value)}
+                        onChange={handleMessageChange} // Changed to the new buggy function
                     />
                 </div>
+                <button onClick={handleReset}>Reset Card</button>
                 <div className="card">
                     <h2>Hello, {name}!</h2>
                     <p>{message}</p>
